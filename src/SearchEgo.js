@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import 'whatwg-fetch'
 
 import {EndPoints} from './endPoints/EndPoints';
-import TableExport from './TableExport';
+import TableExport from './egoTable/TableExport';
+import EgoSelect from './egoTable/EgoSelect';
 import RemoveOrAddToBlackWhiteList from './youthList/RemoveOrAddToBlackWhiteList';
 import YouthListParser from './utils/YouthListParser';
 
@@ -16,7 +17,8 @@ class SearchEgo extends Component {
       maximumDays: 111,
       stars: 4,
       position: "keeper",
-      order: ""
+      order: "",
+      specialty: -3
     };
 
   //  this.handleChange = this.handleChange.bind(this);
@@ -28,28 +30,13 @@ class SearchEgo extends Component {
     this.handleChangePosition = this.handleChangePosition.bind(this);
     this.handleChangeOrder = this.handleChangeOrder.bind(this);
     this.handleChangeOrder = this.handleChangeOrder.bind(this);
+    this.handleChangespecialty = this.handleChangespecialty.bind(this);
 
     this.days = this.createDays();
     this.valueField = 'code';
-    this.labelField = 'description'
-    this.options = [
-        {
-            description: 'This is option A',
-            code: 'a'
-        },
-        {
-            description: 'This is option B',
-            code: 'b'
-        },
-        {
-            description: 'This is option C',
-            code: 'c'
-        },
-        {
-            description: 'This is option D',
-            code: 'd'
-        }
-    ];
+    this.labelField = 'description';
+
+    this.specialities =YouthListParser.especialitiesExtra();
   }
 
   handleSubmit(event) {
@@ -60,7 +47,8 @@ class SearchEgo extends Component {
       maximumDays: this.state.maximumDays,
       stars: this.state.stars,
       position: this.state.position,
-      order: this.state.order
+      order: this.state.order,
+      specialty: this.state.specialty
     }
     this.requestPlayerList(params);
   }
@@ -89,6 +77,9 @@ class SearchEgo extends Component {
     this.setState({order: e.target.value})
   }
 
+  handleChangespecialty(e){
+    this.setState({specialty: e.target.value})
+  }
   createDays(){
     let options = [];
     for (let i = 0; i < 112; i++){
@@ -176,6 +167,7 @@ class SearchEgo extends Component {
                     <option value="8.5">8.5</option>
                   </select>
                 </div>
+                <EgoSelect cols="2" label="Especialidad" name="especialty" value={this.state.specialty} onChangeEgoSelect={this.handleChangespecialty} options={this.specialities}/>
                 <div className="form-group col-auto">
                   <label className="mr-sm-2" htmlFor="position">Posicion</label>
                   <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="position" name="position"
@@ -216,9 +208,9 @@ class SearchEgo extends Component {
                   <th>Jugador</th>
                   <th>Edad</th>
                   <th>Equipo senior</th>
-                  <th>Posición</th>
-                  <th>Especialidad</th>
                   <th>Estrellas</th>
+                  <th>Especialidad</th>
+                  <th>Posición</th>
                   <th>Favoritos</th>
                 </tr>
               </thead>
@@ -229,9 +221,9 @@ class SearchEgo extends Component {
                     <td> {p.first_name} {p.last_name}</td>
                     <td> {p.age},{p.days}</td>
                     <td> {p.teamName} </td>
-                    <td> {p.position} {order(p.order)}</td>
-                    <td> {p.specialty}</td>
                     <td> {p.stars}</td>
+                    <td> {p.specialty}</td>
+                    <td> {p.position} {order(p.order)}</td>
                     <td>
                       <RemoveOrAddToBlackWhiteList item={p} list={p.positionId} blacklist={p.blacklistId} />
                     </td>

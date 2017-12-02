@@ -1,8 +1,34 @@
 export default class YouthListParser {
 
-  static translateSpecialty(speciality){
-    const specialitis = ["Sin especialidad","Técnico","Rápido","Potente","Imprevisible","Cabezeador","regainer"]
-    return specialitis[speciality];
+  static specialities = ["Sin especialidad","Técnico","Rápido","Potente","Imprevisible","Cabezeador","regainer"];
+
+  static translatespecialty(specialty){
+    return this.specialities[specialty];
+  }
+
+  static especialitiesExtra(){
+    const especialities = this.specialities.map( (name, id) => {
+      return {
+        id,
+        name
+      }
+    })
+
+    return [
+      {
+        id: -3,
+        name: "Sin especificar"
+      },
+      {
+        id: -2,
+        name: 'Ninguna'
+      },
+      {
+        id: -1,
+        name: 'Cualquiera'
+      },
+      ...especialities
+    ]
   }
 
   static parse(playerList=[]){
@@ -23,7 +49,7 @@ export default class YouthListParser {
       id: player.id,
       name: `${player.first_name} ${player.last_name}`,
       age: `${player.age},${player.days}`,
-      speciality: this.translateSpecialty(player.specialty),
+      specialty: this.translatespecialty(player.specialty),
       stars: player.stars
     }
   }
@@ -93,7 +119,7 @@ export default class YouthListParser {
       player.order = order;
       player.positionId = positionId;
       player.blacklistId = positionId + 6;
-      player.specialty = this.translateSpecialty(player.specialty);
+      player.specialty = this.translatespecialty(player.specialty);
       return player;
   }
 };
