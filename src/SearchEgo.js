@@ -161,47 +161,47 @@ class SearchEgo extends Component {
                   </select>
                 </div>
                 <div className="form-group col-auto">
-                    <label className="mr-sm-2" htmlFor="starts">Estrellas</label>
-                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="starts" name="starts"
-                     value={this.state.stars} onChange={this.handleChangeStars}>
-                      <option value="4">4</option>
-                      <option value="4.5">4.5</option>
-                      <option value="5">5</option>
-                      <option value="5.5">5.5</option>
-                      <option value="6">6</option>
-                      <option value="6.5">6.5</option>
-                      <option value="7">7</option>
-                      <option value="7.5">7.5</option>
-                      <option value="8">8</option>
-                      <option value="8.5">8.5</option>
-                    </select>
-                  </div>
-                  <div className="form-group col-auto">
-                    <label className="mr-sm-2" htmlFor="position">Posicion</label>
-                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="position" name="position"
-                     value={this.state.position} onChange={this.handleChangePosition}>
-                      <option value="keeper">Portero</option>
-                      <option value="defense">Defensa</option>
-                      <option value="wingBack">Lateral</option>
-                      <option value="inner">Mediocentro</option>
-                      <option value="winger">Extremo</option>
-                      <option value="forward">Delantero</option>
-                    </select>
-                  </div>
-                  <div className="form-group col-auto">
-                    <label className="mr-sm-2" htmlFor="order">Orden</label>
-                    <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="order" name="order"
-                     value={this.state.order} onChange={this.handleChangeOrder}>
-                      <option value="">-</option>
-                      <option value="offensive">Ofensivo</option>
-                      <option value="defensive">Defensivo</option>
-                      <option value="toWing">Hacia el lateral</option>
-                      <option value="toMiddel">Hacía el medio</option>
-                    </select>
-                  </div>
-                  <div className="form-group col-auto">
-                    <button type="submit" className="btn btn-primary">Buscar</button>
-                  </div>
+                  <label className="mr-sm-2" htmlFor="starts">Estrellas</label>
+                  <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="starts" name="starts"
+                   value={this.state.stars} onChange={this.handleChangeStars}>
+                    <option value="4">4</option>
+                    <option value="4.5">4.5</option>
+                    <option value="5">5</option>
+                    <option value="5.5">5.5</option>
+                    <option value="6">6</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7">7</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8">8</option>
+                    <option value="8.5">8.5</option>
+                  </select>
+                </div>
+                <div className="form-group col-auto">
+                  <label className="mr-sm-2" htmlFor="position">Posicion</label>
+                  <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="position" name="position"
+                   value={this.state.position} onChange={this.handleChangePosition}>
+                    <option value="keeper">Portero</option>
+                    <option value="defense">Defensa</option>
+                    <option value="wingBack">Lateral</option>
+                    <option value="inner">Mediocentro</option>
+                    <option value="winger">Extremo</option>
+                    <option value="forward">Delantero</option>
+                  </select>
+                </div>
+                <div className="form-group col-auto">
+                  <label className="mr-sm-2" htmlFor="order">Orden</label>
+                  <select className="custom-select mb-2 mr-sm-2 mb-sm-0" id="order" name="order"
+                   value={this.state.order} onChange={this.handleChangeOrder}>
+                    <option value="">-</option>
+                    <option value="offensive">Ofensivo</option>
+                    <option value="defensive">Defensivo</option>
+                    <option value="toWing">Hacia el lateral</option>
+                    <option value="toMiddel">Hacía el medio</option>
+                  </select>
+                </div>
+                <div className="form-group col-auto">
+                  <button type="submit" className="btn btn-primary">Buscar</button>
+                </div>
               </form>
               <div className="col-md-2 text-md-right">
                 <TableExport></TableExport>
