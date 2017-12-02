@@ -3,8 +3,7 @@ import 'whatwg-fetch'
 
 import {EndPoints} from './endPoints/EndPoints';
 import TableExport from './TableExport';
-import RemoveOrAddToList from './youthList/RemoveOrAddToList';
-
+import RemoveOrAddToBlackWhiteList from './youthList/RemoveOrAddToBlackWhiteList';
 import YouthListParser from './utils/YouthListParser';
 
 class SearchEgo extends Component {
@@ -124,6 +123,10 @@ class SearchEgo extends Component {
         )
     });
 
+    const order = (order) =>{
+      return order === 'Normal' ? '' : order;
+    }
+
     return(
       <div>
         <h1 className="display-5">Juveniles</h1>
@@ -209,12 +212,12 @@ class SearchEgo extends Component {
             <table id="table-results" className="table table-striped">
               <thead>
                 <tr>
+                  <th>Id</th>
                   <th>Jugador</th>
                   <th>Edad</th>
                   <th>Equipo senior</th>
                   <th>Posición</th>
                   <th>Especialidad</th>
-                  <th>Orden</th>
                   <th>Estrellas</th>
                   <th>Favoritos</th>
                 </tr>
@@ -222,14 +225,16 @@ class SearchEgo extends Component {
               <tbody>
                 {this.state.youthPlayers.map( (p, index) =>
                   <tr key={p.id}>
+                    <td> {p.id} </td>
                     <td> {p.first_name} {p.last_name}</td>
                     <td> {p.age},{p.days}</td>
                     <td> {p.teamName} </td>
-                    <td> {p.position}</td>
+                    <td> {p.position} {order(p.order)}</td>
                     <td> {p.specialty}</td>
-                    <td> {p.order}</td>
                     <td> {p.stars}</td>
-                    <td> <RemoveOrAddToList item={p} index={index} /></td>
+                    <td>
+                      <RemoveOrAddToBlackWhiteList item={p} list={p.positionId} blacklist={p.blacklistId} />
+                    </td>
                   </tr>
                 )}
               </tbody>

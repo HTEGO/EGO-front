@@ -1,8 +1,8 @@
 {
   "name": "ego-react",
-  "version": "0.1.1",
+  "version": "0.1.1.1",
   "private": true,
-  "homepage": "http://http://elgranojeador.000webhostapp.com/front/",
+  "homepage": "http://vps485915.ovh.net/",
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
     "file-saver": "^1.3.3",

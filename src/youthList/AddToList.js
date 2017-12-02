@@ -18,13 +18,14 @@ class AddToList extends Component {
     url.searchParams.append("list",this.props.list);
     url.searchParams.append("player",this.props.player);
     // Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    const that = this;
     fetch(url)
     .then(response => {
       if(response.status === 200){
-        this.props.onAdd(this.props.list);
+        return true
       }
-    }).then(json => {
-
+    }).then((result) => {
+        that.props.onAdd(that.props.list);
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     })
@@ -32,9 +33,7 @@ class AddToList extends Component {
 
   render(){
     return(
-      <button type="botton" className="btn btn-success btn-sm" onClick={this.handleAddToList}>
-        <span className="oi oi-plus"></span> Añadir a la lista "{this.props.positionName}"
-      </button>
+      <div onClick={this.handleAddToList}>{this.props.children}</div>
     )
   }
 }

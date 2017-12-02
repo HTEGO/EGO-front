@@ -92,6 +92,7 @@ export default class YouthListParser {
       player.position = position;
       player.order = order;
       player.positionId = positionId;
+      player.blacklistId = positionId + 6;
       player.specialty = this.translateSpecialty(player.specialty);
       return player;
   }

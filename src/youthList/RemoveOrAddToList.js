@@ -1,38 +1,63 @@
 import React, { Component } from 'react';
-import RemoveFromList from '../youthList/RemoveFromList';
-import AddToList from '../youthList/AddToList';
-
-import 'whatwg-fetch'
-
+import RemoveFromList from './RemoveFromList';
+import AddToList from './AddToList';
+import EgoButton from '../ui/EgoButton';
 
 class RemoveOrAddToList extends Component {
   constructor(props) {
     super(props);
-    this.props = props;
     this.state = {
-      added : false
+      added : props.item.list
     };
 
     this.handleOnRemoveFromList = this.handleOnRemoveFromList.bind(this);
     this.handleAddToList = this.handleAddToList.bind(this);
   }
 
-  handleOnRemoveFromList(index){
-    this.props.item.list = null;
+  handleOnRemoveFromList(){
     this.setState({added: false})
+    this.props.onRemoveFromList();
   }
   handleAddToList(list){
-    this.props.item.list = list;
     this.setState({added: true})
+    this.props.onAddToList();
   }
 
   render(){
+    const theme = {};
+    if(this.props.type === "blacklist") {
+      theme.add = {
+        theme: "btn-dark",
+        icon: "",
+        text: "Lista negra"
+      }
+      theme.remove = {
+        theme: "btn-info",
+        icon: '',
+        text: 'Eliminar lista negra'
+      }
+    } else {
+      theme.add = {
+        theme: "btn-success",
+        icon: "plus",
+        text: "Lista"
+      }
+      theme.remove = {
+        theme: "btn-danger",
+        icon: 'trash',
+        text: 'Eliminar'
+      }
+    }
     return(
       <div>
-        {this.state.added || this.props.item.list ? (
-            <RemoveFromList index={this.props.index} item={this.props.item} onDelete={this.handleOnRemoveFromList}/>
+        {this.state.added ? (
+            <RemoveFromList onDelete={this.handleOnRemoveFromList} item={this.props.item} list={this.props.list} type={this.props.list}>
+              <EgoButton size="sm" theme={theme.remove.theme} icon={theme.remove.icon}> {theme.remove.text} {this.props.item.position}</EgoButton>
+            </RemoveFromList>
           ) : (
-            <AddToList onAdd={this.handleAddToList} list={this.props.item.positionId} player={this.props.item.id} positionName={this.props.item.position} />
+            <AddToList onAdd={this.handleAddToList} list={this.props.list} player={this.props.item.id}    positionName={this.props.item.position}  type={this.props.list}>
+              <EgoButton size="sm" theme={theme.add.theme} icon={theme.add.icon}> {theme.add.text} {this.props.item.position}</EgoButton>
+            </AddToList>
           )
         }
       </div>
