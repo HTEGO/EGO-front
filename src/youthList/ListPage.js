@@ -23,6 +23,7 @@ class ListPage extends Component {
     this._handleDelete = this._handleDelete.bind(this);
 
     this.thead = [
+      {title: 'Id', name: 'id', show: true},
       {title: 'Jugador', name: 'name', show: true},
       {title: 'Edad', name: 'age', show: true},
       {title: 'Especialidad', name: 'speciality', show: true},
