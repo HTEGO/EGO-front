@@ -6,6 +6,7 @@ import EgoButton from '../ui/EgoButton';
 class RemoveOrAddToList extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       added : props.item.list
     };

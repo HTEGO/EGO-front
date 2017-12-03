@@ -73,7 +73,8 @@ class ListPage extends Component {
     fetch(url).then(response => {
       this.setState({loading: false})
       if(response.status === 200) {
-        this.seState({'added': true})
+        this.setState({'added': true})
+        return response.json();
       }
     }).then((json) => {
       const youthList = YouthListParser.parseBlackList(json);

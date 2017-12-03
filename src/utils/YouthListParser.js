@@ -45,7 +45,7 @@ export default class YouthListParser {
 
   static parseBlackList(players=[]){
     return players.map((player) => {
-      return this._parsePlayerResume(player);
+      return this._parsePlayerResume(player,player.list);
     })
   }
 
