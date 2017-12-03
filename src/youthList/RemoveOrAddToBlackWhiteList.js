@@ -11,7 +11,7 @@ class RemoveOrAddToBlackWhiteList extends Component {
     this.handleOnAddToBlackList = this.handleOnAddToBlackList.bind(this);
     this.handleOnRemoveFromBlackList = this.handleOnRemoveFromBlackList.bind(this);
     this.handleOnAddToList = this.handleOnAddToList.bind(this);
-    this.handleOnRemoveFromList = this.handleOnRemoveFromList.bind(this);
+    this.handleonRemove = this.handleonRemove.bind(this);
   }
 
   handleOnAddToBlackList(list){
@@ -26,7 +26,7 @@ class RemoveOrAddToBlackWhiteList extends Component {
     this.setState({addedToList: true});
   }
 
-  handleOnRemoveFromList(){
+  handleonRemove(){
     this.setState({addedToList: false});
   }
 
@@ -35,12 +35,12 @@ class RemoveOrAddToBlackWhiteList extends Component {
       <div>
         { !this.state.addedToBlackList && (
           <RemoveOrAddToList item={this.props.item} list={this.props.list}
-           onAddToList={this.handleOnAddToList} onRemoveFromList={this.handleOnRemoveFromList}
+           onAddToList={this.handleOnAddToList} onRemove={this.handleonRemove}
           />
         )}
         { !this.state.addedToList && (
           <RemoveOrAddToList item={this.props.item} list={this.props.blacklist}
-            onAddToList={this.handleOnAddToBlackList} type="blacklist" onRemoveFromList={this.handleOnRemoveFromBlackList}
+            onAddToList={this.handleOnAddToBlackList} type="blacklist" onRemove={this.handleOnRemoveFromBlackList}
           />
         )}
       </div>

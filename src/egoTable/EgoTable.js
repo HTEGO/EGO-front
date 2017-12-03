@@ -29,7 +29,7 @@ class EgoTable extends Component {
                   </td>
                  )}
                  <td>
-                  <Action index={index} item={tr} onDelete={this.props.onDeleteItem} />
+                  <Action index={index} item={tr} onRemove={this.props.onDeleteItem} />
                  </td>
                 </tr>
               )}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch'
 
 import EgoTable from '../egoTable/EgoTable';
-import RemoveFromList from '../youthList/RemoveFromList';
+import RemoveOrAddToList from './RemoveOrAddToList';
 
 import {EndPoints} from '../endPoints/EndPoints';
 import {HtPositions} from '../htCodes/HtPositions';
@@ -26,15 +26,13 @@ class ListPage extends Component {
       {title: 'Id', name: 'id', show: true},
       {title: 'Jugador', name: 'name', show: true},
       {title: 'Edad', name: 'age', show: true},
-      {title: 'Especialidad', name: 'speciality', show: true},
+      {title: 'Especialidad', name: 'specialty', show: true},
       {title: 'Estrellas', name: 'stars', show: true},
     ]
   }
 
-  _handleDelete(index) {
-    const youthPlayers = [ ...this.state.youthPlayers];
-    youthPlayers.splice(index,1);
-    this.setState({youthPlayers})
+  _handleDelete(e) {
+    this.setState({youthPlayers: this.state.youthPlayers.filter(player => player.id != e.id)});
   }
 
   handleChangePosition(position){
@@ -82,7 +80,7 @@ class ListPage extends Component {
                   <EgoTable
                     thead={this.thead}
                     tbody={this.state.youthPlayers}
-                    action={RemoveFromList}
+                    action={RemoveOrAddToList}
                     onDeleteItem={this._handleDelete}>
                   </EgoTable>
                 ) : (

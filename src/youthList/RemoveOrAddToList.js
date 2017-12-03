@@ -10,13 +10,14 @@ class RemoveOrAddToList extends Component {
       added : props.item.list
     };
 
-    this.handleOnRemoveFromList = this.handleOnRemoveFromList.bind(this);
+    this.handleonRemove = this.handleonRemove.bind(this);
     this.handleAddToList = this.handleAddToList.bind(this);
   }
 
-  handleOnRemoveFromList(){
+  handleonRemove(e){
+    this.props.item.list = null;
     this.setState({added: false})
-    this.props.onRemoveFromList();
+    this.props.onRemove(e);
   }
   handleAddToList(list){
     this.setState({added: true})
@@ -51,7 +52,7 @@ class RemoveOrAddToList extends Component {
     return(
       <div>
         {this.state.added ? (
-            <RemoveFromList onDelete={this.handleOnRemoveFromList} item={this.props.item} list={this.props.list} type={this.props.list}>
+            <RemoveFromList onDelete={this.handleonRemove} item={this.props.item} list={this.props.list} type={this.props.list} index={this.props.index}>
               <EgoButton size="sm" theme={theme.remove.theme} icon={theme.remove.icon}> {theme.remove.text} {this.props.item.position}</EgoButton>
             </RemoveFromList>
           ) : (

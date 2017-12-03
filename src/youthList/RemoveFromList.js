@@ -2,36 +2,37 @@ import React, { Component } from 'react';
 import {EndPoints} from '../endPoints/EndPoints';
 import 'whatwg-fetch'
 
-class RemoveFromList extends Component {
+class onRemove extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false
     }
-    this.handleRemoveFromList = this.handleRemoveFromList.bind(this);
+    this.handleonRemove = this.handleonRemove.bind(this);
   }
 
-  handleRemoveFromList(e){
+  handleonRemove(e){
     e.preventDefault();
 
     const url = new URL(EndPoints.URL.youthRemoveFromList);
-    url.searchParams.append("list",this.props.list);
+    const list = this.props.list ? this.props.list : this.props.item.list;
+    url.searchParams.append("list",list);
     url.searchParams.append("player",this.props.item.id);
+
+    const that = this;
     fetch(url)
     .then(response => {
       if(response.status === 200){
-        return response.json()
+        this.props.onDelete({
+          index: this.props.index,
+          id: this.props.item.id
+        });
       } else {
         this.setState({error: true});
       }
 
     }).then(json => {
-      if(json.result === 1){
-        this.props.item.list = null;
-        this.props.onDelete();
-      } else {
-        this.setState({error: true});
-      }
+
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     })
@@ -45,7 +46,7 @@ class RemoveFromList extends Component {
               <span className="oi oi-warning"></span> Error eliminando
             </button>
           ) : (
-            <div onClick={this.handleRemoveFromList}>{this.props.children}</div>
+            <div onClick={this.handleonRemove}>{this.props.children}</div>
           )
         }
       </div>
@@ -53,4 +54,4 @@ class RemoveFromList extends Component {
   }
 }
 
-export default RemoveFromList; // Don’t forget to use export default!
+export default onRemove; // Don’t forget to use export default!
