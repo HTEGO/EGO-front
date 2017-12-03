@@ -19,7 +19,6 @@ class onRemove extends Component {
     url.searchParams.append("list",list);
     url.searchParams.append("player",this.props.item.id);
 
-    const that = this;
     fetch(url)
     .then(response => {
       if(response.status === 200){

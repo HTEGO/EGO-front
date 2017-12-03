@@ -5,6 +5,7 @@ export const EndPoints = {
     bestYouthPlayer: base+"/bestYouthPlayer",
     youthAddToList: base+"/YouthList/add",
     youthRemoveFromList: base+"/YouthList/remove",
+    youthListBlacklist: base+"/YouthList/blacklist",
     youthList: base+"/YouthList/list"
   }
 };

@@ -6,7 +6,10 @@ class EgoTable extends Component {
     const Action = this.props.action;
     return(
       <div>
-        { this.props.tbody.length > 0 ? (
+        { this.props.loading && (
+          <div className="load7"><div className="loader">Loading...</div></div>
+        )}
+         {(! this.props.error) && !this.props.loading && (this.props.tbody.length > 0   ? (
           <table id={this.props.tableId} className="table table-striped">
             <thead>
               <tr>
@@ -39,6 +42,11 @@ class EgoTable extends Component {
           <div className="alert alert-warning" role="alert">
             <span className="oi oi-warning"></span> No hay jugadores en esta lista
           </div>
+        ))}
+        { this.props.error && (
+            <div className="alert alert-danger" role="alert">
+              <span className="oi oi-info"></span> Error cargando datos
+            </div>
         )}
       </div>
     )
