@@ -1,5 +1,5 @@
-// let base = "http://vps485915.ovh.net/api"
-let base = "http://localhost/ego/public"
+let base = "http://vps485915.ovh.net/api"
+// let base = "http://localhost/ego/public"
 export const EndPoints = {
   URL: {
     bestYouthPlayer: base+"/bestYouthPlayer",
