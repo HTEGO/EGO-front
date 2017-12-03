@@ -7,7 +7,7 @@ class EgoTable extends Component {
     return(
       <div>
         { this.props.tbody.length > 0 ? (
-          <table className="table table-striped">
+          <table id={this.props.tableId} className="table table-striped">
             <thead>
               <tr>
                 {this.props.thead.map(th =>

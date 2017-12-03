@@ -28,7 +28,7 @@ class TableExport extends Component {
 
   exportFile() {
     let type = "xlsx";
-    var wb = XLSX.utils.table_to_book(document.getElementById("table-results"), {sheet:"Sheet JS"});
+    var wb = XLSX.utils.table_to_book(document.getElementById(this.props.tableId), {sheet:"Sheet JS"});
     var wbout = XLSX.write(wb, {bookType:type, bookSST:true, type: 'binary'});
     var fname =  'jugadores.' + type;
     // try {

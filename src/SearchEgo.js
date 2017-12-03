@@ -196,7 +196,7 @@ class SearchEgo extends Component {
                 </div>
               </form>
               <div className="col-md-2 text-md-right">
-                <TableExport></TableExport>
+                <TableExport tableId="table-results"></TableExport>
               </div>
             </div>
           </section>

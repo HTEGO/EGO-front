@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch'
 
 import EgoTable from '../egoTable/EgoTable';
+import TableExport from '../egoTable/TableExport';
 import RemoveOrAddToList from './RemoveOrAddToList';
 
 import {EndPoints} from '../endPoints/EndPoints';
@@ -71,6 +72,7 @@ class ListPage extends Component {
               <a href="#winger" onClick={this.handleChangePosition.bind(this,'winger')} className="nav-link" id="v-pills-winger-tab" data-toggle="pill" role="tab" aria-controls="list-table" aria-selected="false">Extremo</a>
               <a href="#inner" onClick={this.handleChangePosition.bind(this,'inner')} className="nav-link" id="v-pills-inner-tab" data-toggle="pill" role="tab" aria-controls="list-table" aria-selected="false">Mediocentro</a>
               <a href="#forward" onClick={this.handleChangePosition.bind(this,'forward')} className="nav-link" id="v-pills-forward-tab" data-toggle="pill" role="tab" aria-controls="list-table" aria-selected="false">Delantero</a>
+              <TableExport tableId="table-results" />
             </div>
           </div>
           <div className="col-md-9">
@@ -78,6 +80,7 @@ class ListPage extends Component {
               <div className="tab-pane fade show active" id="v-pills-keeper" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 {this.state.requested ? (
                   <EgoTable
+                    tableId="table-results"
                     thead={this.thead}
                     tbody={this.state.youthPlayers}
                     action={RemoveOrAddToList}
