@@ -4,10 +4,11 @@ class EgoButton extends Component {
 
   render(){
     const buttonClass = "btn "+this.props.theme+" btn-"+this.props.size;
+    const iconClass = 'oi oi-'+this.props.icon;
     return(
       <button type="botton" className={buttonClass}>
 
-        <span className="oi oi-plus"></span> {this.props.children}
+        <span className={iconClass}></span> {this.props.children}
       </button>
     )
   }

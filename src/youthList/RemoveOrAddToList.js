@@ -28,7 +28,7 @@ class RemoveOrAddToList extends Component {
     if(this.props.type === "blacklist") {
       theme.add = {
         theme: "btn-dark",
-        icon: "",
+        icon: 'ban',
         text: "Lista negra"
       }
       theme.remove = {
